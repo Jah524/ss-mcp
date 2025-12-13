@@ -6,7 +6,7 @@ import os
 import re
 import subprocess
 from pathlib import Path
-from typing import Literal, Optional
+from typing import Literal
 
 from mcp.server.fastmcp import FastMCP
 from openai import OpenAI
@@ -48,7 +48,10 @@ def _resolve_repo_root(repo_root: str) -> Path:
 
     # allowlist gate (recommended when sharing server across projects)
     if ALLOWED_ROOTS:
-        ok = any(str(root).startswith(str(ar) + os.sep) or root == ar for ar in ALLOWED_ROOTS)
+        ok = any(
+            str(root).startswith(str(ar) + os.sep) or root == ar
+            for ar in ALLOWED_ROOTS
+        )
         if not ok:
             raise PermissionError(
                 f"repo_root is not under REVIEW_ALLOWED_ROOTS: {root}"
@@ -124,7 +127,9 @@ REVIEW_JSON_SCHEMA = {
 }
 
 
-def _call_openai_review(model: str, focus: str, diff: str, context: dict[str, str]) -> dict:
+def _call_openai_review(
+    model: str, focus: str, diff: str, context: dict[str, str]
+) -> dict:
     client = OpenAI()
     resp = client.chat.completions.create(
         model=model,
@@ -156,8 +161,8 @@ def _call_openai_review(model: str, focus: str, diff: str, context: dict[str, st
 def review_git_diff(
     repo_root: str,
     diff_source: Literal["staged", "working", "branch"] = "staged",
-    base_ref: Optional[str] = None,
-    head_ref: Optional[str] = None,
+    base_ref: str | None = None,
+    head_ref: str | None = None,
     focus: str = "bugs, edge cases, security, performance, readability",
     model: str = DEFAULT_MODEL,
     include_context_files: bool = True,
