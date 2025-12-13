@@ -10,6 +10,7 @@ requires-python = ">=3.11"
 dependencies = [
     "mcp",
     "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
 ]
 
 [project.optional-dependencies]

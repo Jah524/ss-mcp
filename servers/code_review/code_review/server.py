@@ -8,8 +8,12 @@ import subprocess
 from pathlib import Path
 from typing import Literal
 
+from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 from openai import OpenAI
+
+# Load .env from the package directory
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 # --- logging (IMPORTANT: never print to stdout on stdio servers) ---
 logger = logging.getLogger("review-mcp")
