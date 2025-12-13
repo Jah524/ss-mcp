@@ -22,6 +22,11 @@ OPENAI_API_KEY=sk-your-api-key-here
 pip install -e .
 ```
 
+**`-e`（編集可能モード）について：**
+- ソースコードへのシンボリックリンクとしてインストール
+- `server.py` などの変更が再インストールなしで即座に反映される
+- 開発中は `-e` を使用し、本番では `pip install .` を推奨
+
 ### 3. Claude Code への登録
 
 ```bash
@@ -33,6 +38,30 @@ claude mcp add code-review --transport stdio -- mcp-code-review
 ```bash
 claude mcp list
 ```
+
+## アップデート
+
+### ソースコードの更新時
+
+**`-e` モードでインストールした場合：**
+- `server.py` の変更は自動的に反映される（再インストール不要）
+- `pyproject.toml` の依存関係を変更した場合のみ再インストールが必要：
+
+```bash
+pip install -e .
+```
+
+**通常モードでインストールした場合：**
+- すべての変更に対して再インストールが必要：
+
+```bash
+pip install .
+```
+
+### Claude Code への再登録
+
+MCP サーバーの登録情報（コマンド名やパス）を変更しない限り、再登録は不要です。
+サーバーは起動時に最新のコードを読み込みます。
 
 ## 利用可能なツール
 
