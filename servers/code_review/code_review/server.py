@@ -142,6 +142,9 @@ def _call_openai_review(
                 "role": "system",
                 "content": (
                     "You are a strict senior code reviewer. "
+                    "IMPORTANT: Before suggesting removal of imports, variables, or code, "
+                    "always check the CONTEXT FILES to verify they are truly unused in the entire file. "
+                    "The diff only shows changes - the full file content is in CONTEXT FILES. "
                     "Return ONLY valid JSON matching this schema: "
                     f"{json.dumps(REVIEW_JSON_SCHEMA)}"
                 ),
