@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "mcp-code-review"
 version = "0.1.0"
 description = "Code review MCP server using OpenAI"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "mcp",
     "openai>=1.0.0",
