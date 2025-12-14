@@ -4,6 +4,12 @@ OpenAI を使用した Git diff のコードレビューを行う MCP サーバ�
 
 ## セットアップ
 
+まず、このディレクトリに移動します：
+
+```bash
+cd servers/code_review
+```
+
 ### 1. 環境変数の設定
 
 ```bash
